@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<style>
+    *{
+        margin:0;
+        padding: 0;
+        box-sizing: border-box;
+        letter-spacing: 1px;
+        font-family: verdana;
+    }
+    body{
+        background: linear-gradient(45deg,#ff0 50%, #333 50%);
+        min-height:100vh;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        width:350px;
+        height:450px;
+        padding: 10px;
+        overflow-y: auto;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+        background-color: #fff;
+        border-radius: 5px;
+    }
+    #input{
+        height:50px;
+        width: 100%;
+        outline: none;
+        border:none;
+        background-color: #666;
+        border-radius: 5px;
+        color:white;
+        padding: 0 10px;
+        margin: 15px 0;
+    }
+
+    #input::placeholder{
+        color:#bbb;
+    }
+
+    ul li{
+        height:40px;
+        background-color: #eee;
+        color: #333;
+        border-radius: 50px;
+        list-style-type: none;
+        margin:15px 0;
+        padding: 10px ;
+        postion:relative;
+    }
+    ul .fa-check, .fa-trash{
+        position:absolute;
+        cursor:pointer;
+    }
+    ul .fa-check{
+        right: 150px;
+        color: green;
+    }
+    ul .fa-trash{
+        right: 120px;
+        color:red;
+    }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+   $("#input").change(function(){
+    var input=$(this).val();
+    $("ul").append('<li>' +input+ '<i class="fa-solid fa-check"></i> <i class="fa-solid fa-trash"></i></li>');
+    input=$(this).val("");
+   });
+
+   $("ul").on('click','.fa-check',function(){
+    $(this).parent().css("background","green");
+   })
+
+    $("ul").on('click','.fa-trash',function(){
+    $(this).parent().hide();
+   })
+});
+</script>
+<body>
+    <div class="container">
+        <input type="text" id="input" class="fillbox" placeholder="Press Enter To Add Task">
+        <ul></ul>
+    </div>
+</body>
+</html>
